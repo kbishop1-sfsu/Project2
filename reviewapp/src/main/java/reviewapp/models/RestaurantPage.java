@@ -11,6 +11,8 @@ public class RestaurantPage {
     private int id;
     @Column(name="avg_rating")
     private float avgRating;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="restr_id", referencedColumnName = "id", unique = true)
     private Restaurant restaurant;
     private List<Review> reviews;
     private List<Reservation> reservations;

@@ -1,11 +1,12 @@
 package project2.reviewapp.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="admins")
 public class Admin extends User{
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="page_id", referencedColumnName="id")
     private RestaurantPage assocRestaurant;
 
     public Admin() {}
@@ -26,7 +27,13 @@ public class Admin extends User{
     @Override
     public String toString() {
         return "Admin{" +
-                "assocRestaurant=" + assocRestaurant +
+                "id=" + super.getId() +
+                ", firstname='" + super.getFirstname() + '\'' +
+                ", lastname='" + super.getLastname() + '\'' +
+                ", email='" + super.getEmail() + '\'' +
+                ", username='" + super.getUsername() + '\'' +
+                ", password='" + super.getPassword() + '\'' +
+                "assocRestaurant=" + assocRestaurant + '\'' +
                 '}';
     }
 }

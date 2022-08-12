@@ -11,7 +11,11 @@ public class Reservation {
     private int id;
     @Column(name="resv_date")
     private Timestamp reservationDate;
+    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name="restr_id", referencedColumnName="id")
     private Restaurant restaurant;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
     @Column(name="status")
     private String status; //pending, confirmed, rejected

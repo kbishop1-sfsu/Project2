@@ -10,7 +10,9 @@ public class Restaurant {
     private int id;
     @Column(name="restr_name")
     private String restaurantName;
-    private Location location;
+    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name="loc", referencedColumnName = "id", unique = true)
+    private Location location;//should be one restaurant to many loc?
     @Column(name="category")
     private String foodCategory;
     @Column(name="website")
