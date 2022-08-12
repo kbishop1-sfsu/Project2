@@ -1,7 +1,7 @@
 --Creating new database called project2
 create database project2;
 
---Creating user table
+--Creating users table
 create table if not exists users(
 	id serial primary key,
 	email varchar(40) unique not null,
@@ -9,11 +9,12 @@ create table if not exists users(
 	password varchar(30) not null,
 	firstName varchar(30) default null,
 	lastName varchar(30) default null,
-	role varchar(30) default "user",
+	role varchar(30) default 'user',
+	isAdmin boolean default false,
 	phoneNumber varchar(10) default null
 );
 
---Creating restaurant table 
+--Creating restaurants table 
 create table if not exists restaurants(
 	id serial primary key,
 	restr_name varchar(40) not null,
@@ -23,10 +24,10 @@ create table if not exists restaurants(
 	constraint fk_locationID  --fk for locations id
 		foreign key(locationID)
 			references locations(id)
-			on delete cascade,
+			on delete cascade
 );
 
---Creating location table
+--Creating locations table
 create table if not exists locations(
 	id serial primary key,
 	street_addr varchar(60) not null,
@@ -35,12 +36,14 @@ create table if not exists locations(
 	zip int not null
 );
 
---Creating review table
+--Creating reviews table
 --A user can make many reviews, review only has one user
 --A restaurant can have many reviews, review only has one restaurant
-create table if not exists review(
+create table if not exists reviews(
 	id serial primary key,
-	rating int check (0 <= rating >= 5), --rating should be between 0-5
+	rating int 
+	check (rating >= 0), --rating should be between 0-5
+	check (rating <= 5),
 	posted timestamp,
 	description varchar(500),
 	userID int,
@@ -60,7 +63,7 @@ create table if not exists review(
 create table if not exists reservations(
 	id serial primary key,
 	resv_date timestamp,
-	status varchar(20) default "pending",
+	status varchar(20) default 'pending',
 	userID int,
 	restID int,
 	constraint fk_user_res --fk users
@@ -101,7 +104,7 @@ create table if not exists admins(
 
 
 
-
+drop table review;
 
 
 
