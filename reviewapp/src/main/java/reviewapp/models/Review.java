@@ -1,4 +1,4 @@
-package project2.reviewapp.models;
+package reviewapp.models;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -9,11 +9,17 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "userID", referencedColumnName = "id")
     private User user;
+
     @Column(name="posted")
     private Timestamp datePosted;
+
     @Column(name="rating")
     private int rating;
+
     @Column(name="descr")
     private String description;
 

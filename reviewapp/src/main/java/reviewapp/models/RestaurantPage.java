@@ -1,4 +1,4 @@
-package project2.reviewapp.models;
+package reviewapp.models;
 
 import javax.persistence.*;
 import java.util.List;
