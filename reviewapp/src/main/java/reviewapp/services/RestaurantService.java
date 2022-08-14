@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import reviewapp.models.Restaurant;
 import reviewapp.repo.RestaurantRepo;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -23,8 +22,11 @@ public class RestaurantService {
         return restaurantRepo.findAll();
     }
 
-    @Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
     public Optional<Restaurant> getRestaurantById(int id){ //Gets restaurant by ID
         return restaurantRepo.findById(id);
+    }
+
+    public Restaurant saveRestaurant(Restaurant restaurant){ //Saves Restaurant
+        return restaurantRepo.save(restaurant);
     }
 }

@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import reviewapp.models.Reservation;
 import reviewapp.repo.ReservationRepo;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -23,9 +22,12 @@ public class ReservationService {
         return reservationRepo.findAll();
     }
 
-    @Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
     public Optional<Reservation> getReservationById(int id){ //Finds reservation by ID
         return reservationRepo.findById(id);
+    }
+
+    public Reservation saveReservation(Reservation reservation){ //Saves Reservation
+        return reservationRepo.save(reservation);
     }
 
 }

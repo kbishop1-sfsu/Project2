@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import reviewapp.models.Location;
 import reviewapp.repo.LocationRepo;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -23,9 +22,12 @@ public class LocationService {
         return locationRepo.findAll();
     }
 
-    @Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
     public Optional<Location> getLocationByID(int id){ //Finds location by ID
         return locationRepo.findById(id);
+    }
+
+    public Location saveLocation(Location location){ //Saves Location
+        return locationRepo.save(location);
     }
 
 }

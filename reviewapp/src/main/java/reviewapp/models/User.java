@@ -1,6 +1,7 @@
 package reviewapp.models;
 
 import javax.persistence.*;
+
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Entity
 @Table(name="users")

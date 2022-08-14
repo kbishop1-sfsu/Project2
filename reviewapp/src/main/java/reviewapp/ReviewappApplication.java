@@ -1,4 +1,4 @@
-package project2.reviewapp;
+package reviewapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
