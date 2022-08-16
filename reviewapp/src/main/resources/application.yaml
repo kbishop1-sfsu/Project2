@@ -8,9 +8,9 @@ myapp:
   value: "Doing Work"
 spring:
   datasource:
-    username: postgres
-    password: deviantwriter14
-    url: jdbc:postgresql://java-enterprise-22075.cgvdqjwau9al.us-west-1.rds.amazonaws.com:5432/my_database
+    username: jamisonm
+    password: Randomdogpark
+    url: jdbc:postgresql://projects.cpsckzoukykn.us-east-2.rds.amazonaws.com:5432/project2
     driver-class-name: org.postgresql.Driver
 
 logging:
