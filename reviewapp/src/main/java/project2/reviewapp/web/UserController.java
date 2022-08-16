@@ -15,13 +15,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("users")
 public class UserController {
     @Value("${server.port}")
     int serverPort;
 
     private UserRepository userRepository;
-    private List<User> users;//is this necessary
+    private List<User> users;//is this necessary?
 
     @Autowired
     public UserController(UserRepository userRepository) {
@@ -35,6 +35,17 @@ public class UserController {
         return ResponseEntity.ok(allUsers);
     }
 
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity createUser(@RequestBody User newUser) throws URISyntaxException{
+        users.add(newUser);
+        userRepository.save(newUser);
+        return ResponseEntity.created(new URI("http://localhost:"+serverPort+"/reviewapp/users/"+newUser.getId())).build();
+    }
+
+    //TODO: delete user
+
+
+
     @GetMapping(path="{id}")
     public ResponseEntity getById(@PathVariable("id") int id){
         Optional<User> user = userRepository.findById(id);
@@ -44,7 +55,7 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping(path="/s/email", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path="s/email", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getByEmail(@RequestParam(required = false) String email){
         Optional<User> user = Optional.ofNullable(userRepository.findByEmail(email));
         if(user.isPresent()){
@@ -53,18 +64,28 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity createUser(@RequestBody User newUser) throws URISyntaxException{
-        users.add(newUser);
-        userRepository.save(newUser);
-        return ResponseEntity.created(new URI("http://localhost:"+serverPort+"/reviewapp/users/"+newUser.getId())).build();
+    @PutMapping(path="{id}")
+    public ResponseEntity updateUserInfo(@PathVariable("id") int id, @RequestBody User userDetails){
+        Optional<User> user = userRepository.findById(id);
+        if(user.isPresent()){
+            user.get().setFirstname(userDetails.getFirstname());
+            user.get().setLastname(userDetails.getLastname());
+            user.get().setEmail(userDetails.getEmail());
+            userRepository.updateUserInfo(userDetails.getFirstname(), userDetails.getLastname(), userDetails.getEmail(), id);
+            return ResponseEntity.ok(user.get());
+        }
+        return ResponseEntity.notFound().build();
     }
 
-    public ResponseEntity updateFirstName(User user, String firstname){
-        //update user in data member array list
-        //update tabel through userRepo
-        //return updated user
-        return null;
+    @PutMapping(path="{id}/reset")
+    public ResponseEntity resetPassword(@PathVariable("id")int id, @RequestBody String password){
+        Optional<User> user = userRepository.findById(id);
+        if(user.isPresent()){
+            user.get().setPassword(password);
+            userRepository.updateUserPassword(password, id);
+            return ResponseEntity.ok(user.get());
+        }
+        return ResponseEntity.notFound().build();
     }
 
 

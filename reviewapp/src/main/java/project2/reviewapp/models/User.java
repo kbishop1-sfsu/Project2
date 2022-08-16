@@ -1,12 +1,15 @@
 package project2.reviewapp.models;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Entity
 @Table(name="users")
 public class User {
+    @GenericGenerator(name = "generator", strategy = "increment")
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "generator")//was TABLE, try SEQUENCE, solu: IDENTITY
     private int id;
     @Column(name="firstname")
     private String firstname;
@@ -16,7 +19,7 @@ public class User {
     private String email;
     @Column(name="username", unique = true)
     private String username;
-    @Column(name="password")
+    @Column(name="_password")
     private String password;
 
     public User() {
