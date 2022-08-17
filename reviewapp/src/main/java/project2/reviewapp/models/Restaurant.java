@@ -17,16 +17,19 @@ public class Restaurant {
     private String foodCategory;
     @Column(name="website")
     private String website;
+    @Column(name="avg_rating")
+    private float rating;
 
     public Restaurant() {
     }
 
-    public Restaurant(int id, String restaurantName, Location location, String foodCategory, String website) {
+    public Restaurant(int id, String restaurantName, Location location, String foodCategory, String website, float rating) {
         this.id = id;
         this.restaurantName = restaurantName;
         this.location = location;
         this.foodCategory = foodCategory;
         this.website = website;
+        this.rating = rating;
     }
 
     public int getId() {
@@ -69,6 +72,14 @@ public class Restaurant {
         this.website = website;
     }
 
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
     @Override
     public String toString() {
         return "Restaurant{" +
@@ -77,6 +88,7 @@ public class Restaurant {
                 ", location=" + location +
                 ", foodCategory='" + foodCategory + '\'' +
                 ", website='" + website + '\'' +
+                ", rating='" +  rating + '\'' +
                 '}';
     }
 }

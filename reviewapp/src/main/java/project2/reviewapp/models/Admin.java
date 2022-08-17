@@ -6,21 +6,21 @@ import javax.persistence.*;
 @Table(name="admins")
 public class Admin extends User{
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="page_id", referencedColumnName="id")
-    private RestaurantPage assocRestaurant;
+    @JoinColumn(name="restr_id", referencedColumnName="id")
+    private Restaurant assocRestaurant;
 
     public Admin() {}
 
-    public Admin(int id, String firstname, String lastname, String email, String username, String password, RestaurantPage assocRestaurant) {
+    public Admin(int id, String firstname, String lastname, String email, String username, String password, Restaurant assocRestaurant) {
         super(id, firstname, lastname, email, username, password);
         this.assocRestaurant = assocRestaurant;
     }
 
-    public RestaurantPage getAssocRestaurant() {
+    public Restaurant getAssocRestaurant() {
         return assocRestaurant;
     }
 
-    public void setAssocRestaurant(RestaurantPage assocRestaurant) {
+    public void setAssocRestaurant(Restaurant assocRestaurant) {
         this.assocRestaurant = assocRestaurant;
     }
 

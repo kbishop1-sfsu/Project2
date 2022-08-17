@@ -1,5 +1,5 @@
 server:
-  port: 1234
+  port: 6789
   servlet:
     context-path: /reviewapp
 

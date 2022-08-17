@@ -17,17 +17,17 @@ public class Reservation {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
-    @Column(name="status")
-    private String status; //pending, confirmed, rejected
+    @Column(name="num_of_ppl")
+    private int numOfPeople;
 
     public Reservation(){}
 
-    public Reservation(int id, Timestamp reservationDate, Restaurant restaurant, User user, String status) {
+    public Reservation(int id, Timestamp reservationDate, Restaurant restaurant, User user, int numOfPeople) {
         this.id = id;
         this.reservationDate = reservationDate;
         this.restaurant = restaurant;
         this.user = user;
-        this.status = status;
+        this.numOfPeople = numOfPeople;
     }
 
     public int getId() {
@@ -62,12 +62,12 @@ public class Reservation {
         this.user = user;
     }
 
-    public String getStatus() {
-        return status;
+    public int getNumOfPeople() {
+        return numOfPeople;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setNumOfPeople(int numOfPeople) {
+        this.numOfPeople = numOfPeople;
     }
 
     @Override
@@ -77,7 +77,7 @@ public class Reservation {
                 ", reservationDate=" + reservationDate +
                 ", restaurant=" + restaurant +
                 ", user=" + user +
-                ", status='" + status + '\'' +
+                ", numOfPeople='" + numOfPeople + '\'' +
                 '}';
     }
 }
