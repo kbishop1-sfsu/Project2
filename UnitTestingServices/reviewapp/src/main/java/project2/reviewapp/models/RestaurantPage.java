@@ -1,11 +1,11 @@
 package project2.reviewapp.models;
 
-import lombok.Builder;
+//import lombok.Builder;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Builder
+//@Builder
 @Entity
 @Table(name="pages")
 public class RestaurantPage {

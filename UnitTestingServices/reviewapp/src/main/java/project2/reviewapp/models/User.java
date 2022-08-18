@@ -2,8 +2,6 @@ package project2.reviewapp.models;
 import lombok.Builder;
 import org.hibernate.annotations.GenericGenerator;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 @Builder
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -12,11 +10,8 @@ import javax.persistence.*;
 public class User {
     @GenericGenerator(name = "generator", strategy = "increment")
     @Id
-<<<<<<< HEAD:reviewapp/src/main/java/project2/reviewapp/models/User.java
+
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "generator")//was TABLE, try SEQUENCE, solu: IDENTITY
-=======
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "generator")
->>>>>>> UnitTestingServices:UnitTestingServices/reviewapp/src/main/java/project2/reviewapp/models/User.java
     private int id;
 
     @Column(name="firstname")
@@ -30,10 +25,6 @@ public class User {
 
     @Column(name="username", unique = true)
     private String username;
-<<<<<<< HEAD:reviewapp/src/main/java/project2/reviewapp/models/User.java
-=======
-
->>>>>>> UnitTestingServices:UnitTestingServices/reviewapp/src/main/java/project2/reviewapp/models/User.java
     @Column(name="_password")
     private String password;
 
