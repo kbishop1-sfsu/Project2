@@ -31,13 +31,8 @@ public class UserController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-<<<<<<< HEAD:reviewapp/src/main/java/project2/reviewapp/web/UserController.java
-    public ResponseEntity getAllUsers(){
-        List<User> allUsers = userRepository.findAll();
-=======
     public ResponseEntity getAll(){
         List<User> allUsers = userService.getAllUsers();
->>>>>>> UnitTestingServices:UnitTestingServices/reviewapp/src/main/java/project2/reviewapp/web/UserController.java
         return ResponseEntity.ok(allUsers);
     }
 
@@ -58,13 +53,8 @@ public class UserController {
     }
 
     @GetMapping(path="{id}")
-<<<<<<< HEAD:reviewapp/src/main/java/project2/reviewapp/web/UserController.java
-    public ResponseEntity getUserById(@PathVariable("id") int id){
-        Optional<User> user = userRepository.findById(id);
-=======
     public ResponseEntity getById(@PathVariable("id") int id){
         Optional<User> user = userService.getUserById(id);
->>>>>>> UnitTestingServices:UnitTestingServices/reviewapp/src/main/java/project2/reviewapp/web/UserController.java
         if(user.isPresent()){
             return ResponseEntity.ok(user.get());
         }

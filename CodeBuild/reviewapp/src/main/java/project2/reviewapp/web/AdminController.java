@@ -6,8 +6,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project2.reviewapp.models.Admin;
-import project2.reviewapp.models.Reservation;
-import project2.reviewapp.models.User;
 import project2.reviewapp.repos.AdminRepository;
 
 import java.net.URI;
@@ -58,27 +56,27 @@ public class AdminController {
         return ResponseEntity.notFound().build();
     }
 
-    @PutMapping(path="{id}")
-    public ResponseEntity updateAdminInfo(@PathVariable("id") int id, @RequestBody Admin adminDetails){
-        Optional<Admin> admin = adminRepository.findById(id);
-        if(admin.isPresent()){
-            admin.get().setFirstname(adminDetails.getFirstname());
-            admin.get().setLastname(adminDetails.getLastname());
-            admin.get().setEmail(adminDetails.getEmail());
-            adminRepository.updateAdminInfo(adminDetails.getFirstname(), adminDetails.getLastname(), adminDetails.getEmail(), id);
-            return ResponseEntity.ok(admin.get());
-        }
-        return ResponseEntity.notFound().build();
-    }
-
-    @PutMapping(path="{id}/reset")
-    public ResponseEntity resetAdminPassword(@PathVariable("id")int id, @RequestBody String password){
-        Optional<Admin> admin = adminRepository.findById(id);
-        if(admin.isPresent()){
-            admin.get().setPassword(password);
-            adminRepository.updateAdminPassword(password, id);
-            return ResponseEntity.ok(admin.get());
-        }
-        return ResponseEntity.notFound().build();
-    }
+//    @PutMapping(path="{id}")
+//    public ResponseEntity updateAdminInfo(@PathVariable("id") int id, @RequestBody Admin adminDetails){
+//        Optional<Admin> admin = adminRepository.findById(id);
+//        if(admin.isPresent()){
+//            admin.get().setFirstname(adminDetails.getFirstname());
+//            admin.get().setLastname(adminDetails.getLastname());
+//            admin.get().setEmail(adminDetails.getEmail());
+//            adminRepository.updateAdminInfo(adminDetails.getFirstname(), adminDetails.getLastname(), adminDetails.getEmail(), id);
+//            return ResponseEntity.ok(admin.get());
+//        }
+//        return ResponseEntity.notFound().build();
+//    }
+//
+//    @PutMapping(path="{id}/reset")
+//    public ResponseEntity resetAdminPassword(@PathVariable("id")int id, @RequestBody String password){
+//        Optional<Admin> admin = adminRepository.findById(id);
+//        if(admin.isPresent()){
+//            admin.get().setPassword(password);
+//            adminRepository.updateAdminPassword(password, id);
+//            return ResponseEntity.ok(admin.get());
+//        }
+//        return ResponseEntity.notFound().build();
+//    }
 }

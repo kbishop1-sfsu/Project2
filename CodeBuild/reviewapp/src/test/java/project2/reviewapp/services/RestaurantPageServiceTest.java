@@ -37,7 +37,8 @@ class RestaurantPageServiceTest {
                                 "California",
                                 12345),
                         "food",
-                        "www.food.com"))
+                        "www.food.com",
+                        4f))
                 .build();
     }
 

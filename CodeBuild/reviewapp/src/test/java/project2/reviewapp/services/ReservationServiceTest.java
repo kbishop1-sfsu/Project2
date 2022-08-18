@@ -39,7 +39,8 @@ class ReservationServiceTest {
                                 "California",
                                 12345),
                         "Fried food",
-                        "www.fries.com"))
+                        "www.fries.com",
+                        4f))
                 .user(new User(1,
                         "tom",
                         "cat",
