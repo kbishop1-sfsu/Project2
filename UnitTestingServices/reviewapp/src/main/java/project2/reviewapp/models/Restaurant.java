@@ -1,9 +1,9 @@
 package project2.reviewapp.models;
 
-//import lombok.Builder;
+import lombok.Builder;
 import javax.persistence.*;
 
-//@Builder
+@Builder
 @Entity
 @Table(name="restaurants")
 public class Restaurant {

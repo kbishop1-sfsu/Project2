@@ -1,11 +1,11 @@
 package project2.reviewapp.models;
 
-//import lombok.Builder;
+import lombok.Builder;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-//@Builder
+@Builder
 @Entity
 @Table(name="reviews")
 public class Review {
